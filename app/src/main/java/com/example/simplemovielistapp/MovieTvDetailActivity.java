@@ -46,10 +46,12 @@ public class MovieTvDetailActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(imgBaseUrl + tvResponse.getBackdropPath())
                 .centerCrop()
+                .placeholder(R.drawable.no_img)
                 .into(backdrop_image_iv);
         Glide.with(this)
                 .load(imgBaseUrl + tvResponse.getPosterPath())
                 .centerCrop()
+                .placeholder(R.drawable.no_img)
                 .into(poster_image_iv);
         title_tv.setText(tvResponse.getName());
         release_date_tv.setText(tvResponse.getFirstAirDate().substring(0, 4));

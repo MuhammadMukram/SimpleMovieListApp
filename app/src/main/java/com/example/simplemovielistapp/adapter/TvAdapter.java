@@ -42,6 +42,7 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
         Glide.with(holder.itemView.getContext())
                 .load(imgBaseUrl + tvResponse.getPosterPath())
                 .centerCrop()
+                .placeholder(R.drawable.no_img)
                 .into(holder.movie_poster_iv);
         holder.item_grid_cv.setOnClickListener(v -> {
             Intent i = new Intent(holder.itemView.getContext(), MovieTvDetailActivity.class);
