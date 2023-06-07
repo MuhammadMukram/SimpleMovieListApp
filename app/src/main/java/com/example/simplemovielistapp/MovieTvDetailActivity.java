@@ -2,7 +2,6 @@ package com.example.simplemovielistapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.os.Bundle;
@@ -10,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.simplemovielistapp.api.MovieResponse;
-import com.example.simplemovielistapp.api.TvResponse;
+import com.example.simplemovielistapp.models.MovieResponse;
+import com.example.simplemovielistapp.models.TvResponse;
 
 public class MovieTvDetailActivity extends AppCompatActivity {
     public static final String EXTRA_ITEM = "item_extra";

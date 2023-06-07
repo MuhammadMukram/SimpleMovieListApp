@@ -1,7 +1,5 @@
 package com.example.simplemovielistapp.fragment;
 
-import static com.example.simplemovielistapp.MainActivity.bottom_nav;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,7 +19,7 @@ import com.example.simplemovielistapp.R;
 import com.example.simplemovielistapp.adapter.MovieAdapter;
 import com.example.simplemovielistapp.api.ApiConfig;
 import com.example.simplemovielistapp.api.MovieDataResponse;
-import com.example.simplemovielistapp.api.MovieResponse;
+import com.example.simplemovielistapp.models.MovieResponse;
 
 import java.util.ArrayList;
 import java.util.List;

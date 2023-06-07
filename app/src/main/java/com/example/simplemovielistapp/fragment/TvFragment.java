@@ -19,7 +19,7 @@ import com.example.simplemovielistapp.R;
 import com.example.simplemovielistapp.adapter.TvAdapter;
 import com.example.simplemovielistapp.api.ApiConfig;
 import com.example.simplemovielistapp.api.TvDataResponse;
-import com.example.simplemovielistapp.api.TvResponse;
+import com.example.simplemovielistapp.models.TvResponse;
 
 import java.util.ArrayList;
 import java.util.List;

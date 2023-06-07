@@ -14,11 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.simplemovielistapp.MovieTvDetailActivity;
 import com.example.simplemovielistapp.R;
-import com.example.simplemovielistapp.api.MovieDataResponse;
-import com.example.simplemovielistapp.api.MovieResponse;
-import com.example.simplemovielistapp.fragment.MovieFragment;
+import com.example.simplemovielistapp.models.MovieResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{

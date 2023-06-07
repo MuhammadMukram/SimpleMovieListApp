@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.simplemovielistapp.MovieTvDetailActivity;
 import com.example.simplemovielistapp.R;
-import com.example.simplemovielistapp.api.TvResponse;
+import com.example.simplemovielistapp.models.TvResponse;
 
 import java.util.List;
 

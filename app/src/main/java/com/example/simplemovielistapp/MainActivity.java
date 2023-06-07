@@ -1,33 +1,15 @@
 package com.example.simplemovielistapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
-import android.net.wifi.hotspot2.pps.HomeSp;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 
-import com.example.simplemovielistapp.api.ApiConfig;
-import com.example.simplemovielistapp.api.MovieDataResponse;
-import com.example.simplemovielistapp.api.MovieResponse;
-import com.example.simplemovielistapp.api.TvDataResponse;
-import com.example.simplemovielistapp.api.TvResponse;
 import com.example.simplemovielistapp.fragment.FavouriteFragment;
 import com.example.simplemovielistapp.fragment.MovieFragment;
 import com.example.simplemovielistapp.fragment.TvFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public static BottomNavigationView bottom_nav;
