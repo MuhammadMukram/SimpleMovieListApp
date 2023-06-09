@@ -51,8 +51,12 @@ public class FavouriteHelper {
                 null,
                 null,
                 null,
-                DatabaseContract.ItemColumns._ID + "ASC"
+                DatabaseContract.ItemColumns._ID + " ASC"
         );
+    }
+
+    public int getFavouriteStatus(String id) {
+        return database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + DatabaseContract.ItemColumns._ID + " = " + id, null).getCount();
     }
 
     public long insertData(ContentValues contentValues) {

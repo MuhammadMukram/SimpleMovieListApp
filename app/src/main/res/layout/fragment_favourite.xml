@@ -20,7 +20,7 @@
         android:textAlignment="center"
         android:text="There's something trouble \n try to reload your page"/>
     <ProgressBar
-        android:id="@+id/movie_progressbar"
+        android:id="@+id/fav_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>

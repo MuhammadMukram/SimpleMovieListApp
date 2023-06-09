@@ -15,11 +15,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             + "(%s INTEGER NOT NULL PRIMARY KEY,"
                             + " %s TEXT NOT NULL,"
                             + " %s TEXT NOT NULL,"
+                            + " %s TEXT,"
+                            + " %s TEXT,"
+                            + " %s TEXT,"
                             + " %s TEXT NOT NULL,"
-                            + " %s TEXT NOT NULL,"
-                            + " %s TEXT NOT NULL,"
-                            + " %s TEXT NOT NULL,"
-                            + " %s TEXT NOT NULL)",
+                            + " %s INT NOT NULL)",
                     DatabaseContract.TABLE_NAME,
                     DatabaseContract.ItemColumns._ID,
                     DatabaseContract.ItemColumns.TITLE,

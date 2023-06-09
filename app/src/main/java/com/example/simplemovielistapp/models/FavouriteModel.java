@@ -1,8 +1,16 @@
 package com.example.simplemovielistapp.models;
 
-public class FavouriteModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class FavouriteModel implements Parcelable {
     private int id, type;
     private String title, date, overview, poster_path, backdrop_path, vote_average;
+
+    public FavouriteModel() {
+    }
 
     public FavouriteModel(int id, String title, String date, String overview, String poster_path, String backdrop_path, String vote_average, int type) {
         this.id = id;
@@ -14,6 +22,29 @@ public class FavouriteModel {
         this.vote_average = vote_average;
         this.type = type;
     }
+
+    protected FavouriteModel(Parcel in) {
+        id = in.readInt();
+        type = in.readInt();
+        title = in.readString();
+        date = in.readString();
+        overview = in.readString();
+        poster_path = in.readString();
+        backdrop_path = in.readString();
+        vote_average = in.readString();
+    }
+
+    public static final Creator<FavouriteModel> CREATOR = new Creator<FavouriteModel>() {
+        @Override
+        public FavouriteModel createFromParcel(Parcel in) {
+            return new FavouriteModel(in);
+        }
+
+        @Override
+        public FavouriteModel[] newArray(int size) {
+            return new FavouriteModel[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -77,5 +108,22 @@ public class FavouriteModel {
 
     public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(type);
+        dest.writeString(title);
+        dest.writeString(date);
+        dest.writeString(overview);
+        dest.writeString(poster_path);
+        dest.writeString(backdrop_path);
+        dest.writeString(vote_average);
     }
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.simplemovielistapp.MovieTvDetailActivity;
 import com.example.simplemovielistapp.R;
+import com.example.simplemovielistapp.models.FavouriteModel;
 import com.example.simplemovielistapp.models.TvResponse;
 
 import java.util.List;
@@ -45,9 +46,18 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
                 .placeholder(R.drawable.no_img)
                 .into(holder.movie_poster_iv);
         holder.item_grid_cv.setOnClickListener(v -> {
+            FavouriteModel favouriteModel = new FavouriteModel(
+                    tvResponse.getId(),
+                    tvResponse.getName(),
+                    tvResponse.getFirstAirDate(),
+                    tvResponse.getOverview(),
+                    tvResponse.getPosterPath(),
+                    tvResponse.getBackdropPath(),
+                    tvResponse.getVoteAverage(),
+                    MovieTvDetailActivity.TYPE_TV );
+
             Intent i = new Intent(holder.itemView.getContext(), MovieTvDetailActivity.class);
-            i.putExtra(MovieTvDetailActivity.EXTRA_ITEM, tvResponse);
-            i.putExtra(MovieTvDetailActivity.EXTRA_TYPE, MovieTvDetailActivity.TYPE_TV);
+            i.putExtra(MovieTvDetailActivity.EXTRA_ITEM, favouriteModel);
             holder.itemView.getContext().startActivity(i);
         });
     }
