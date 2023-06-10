@@ -1,5 +1,8 @@
 package com.example.simplemovielistapp.fragment;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.ActionBar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.simplemovielistapp.MainActivity;
 import com.example.simplemovielistapp.R;
 import com.example.simplemovielistapp.adapter.MovieAdapter;
 import com.example.simplemovielistapp.api.ApiConfig;
@@ -23,6 +28,7 @@ import com.example.simplemovielistapp.models.MovieResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +39,7 @@ public class MovieFragment extends Fragment {
     private RecyclerView movieList_rv;
     private ProgressBar movie_progressbar;
     private TextView error_message_tv;
-
+    private MovieAdapter movieAdapter;
     private List<MovieResponse> dataMovie = new ArrayList<>();
 
     @Override
@@ -51,6 +57,12 @@ public class MovieFragment extends Fragment {
         movieList_rv = view.findViewById(R.id.movieList_rv);
         movie_progressbar = view.findViewById(R.id.movie_progressbar);
         error_message_tv = view.findViewById(R.id.error_message_tv);
+
+        Log.d(TAG, "otw masuk require Action bar");
+        if (MainActivity.actionBar != null) {
+            Log.d(TAG, "masuk require Action bar");
+            MainActivity.actionBar.setTitle("Movie List");
+        }
 
         movieList_rv.setHasFixedSize(true);
         movieList_rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -71,7 +83,7 @@ public class MovieFragment extends Fragment {
                         for (MovieResponse movieDataResponse : dataMovie) {
                             Log.d("MainActivity", "onResponse: " + movieDataResponse.getTitle());
                         }
-                        MovieAdapter movieAdapter = new MovieAdapter(dataMovie);
+                        movieAdapter = new MovieAdapter(dataMovie);
                         movieList_rv.setAdapter(movieAdapter);
                     } else {
                         Log.e("MainActivity", "onResponse data body is null " + response.message());
@@ -86,4 +98,5 @@ public class MovieFragment extends Fragment {
             }
         });
     }
+
 }

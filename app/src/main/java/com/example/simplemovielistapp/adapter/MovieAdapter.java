@@ -38,8 +38,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MovieResponse movieResponse = dataMovie.get(position);
-        holder.title_tv.setText(movieResponse.getTitle());
-        holder.release_date_tv.setText(movieResponse.getReleaseDate().substring(0, 4));
+
+        if (movieResponse.getTitle().equals("") || movieResponse.getTitle() == null)
+            holder.title_tv.setText("-");
+        else
+            holder.title_tv.setText(movieResponse.getTitle());
+
+        if (!movieResponse.getReleaseDate().equals("") || movieResponse.getReleaseDate() != null)
+            holder.release_date_tv.setText(movieResponse.getReleaseDate().substring(0, 4));
+        else
+            holder.release_date_tv.setText("-");
+
         Glide.with(holder.itemView.getContext())
                 .load(imgBaseUrl + movieResponse.getPosterPath())
                 .centerCrop()

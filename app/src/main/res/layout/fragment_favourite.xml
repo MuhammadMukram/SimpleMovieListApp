@@ -18,7 +18,7 @@
         android:textStyle="bold"
         android:visibility="gone"
         android:textAlignment="center"
-        android:text="There's something trouble \n try to reload your page"/>
+        android:text="There's no Favourite Movie or Tv Show"/>
     <ProgressBar
         android:id="@+id/fav_progressbar"
         android:layout_width="wrap_content"

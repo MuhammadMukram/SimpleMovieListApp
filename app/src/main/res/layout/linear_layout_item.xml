@@ -49,6 +49,7 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/movie_icon"
             android:padding="10dp"
+            app:tint="@color/white"
             />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.example.simplemovielistapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,14 +11,20 @@ import com.example.simplemovielistapp.fragment.FavouriteFragment;
 import com.example.simplemovielistapp.fragment.MovieFragment;
 import com.example.simplemovielistapp.fragment.TvFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.elevation.SurfaceColors;
 
 public class MainActivity extends AppCompatActivity {
     public static BottomNavigationView bottom_nav;
+    public static ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        actionBar = getSupportActionBar();
+        System.out.println("status bar color = " + getWindow().getStatusBarColor());
+        getWindow().setStatusBarColor(SurfaceColors.SURFACE_3.getColor(this));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         displayMovieFragment(fragmentManager);
