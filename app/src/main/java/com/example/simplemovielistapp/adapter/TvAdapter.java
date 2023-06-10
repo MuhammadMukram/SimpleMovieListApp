@@ -18,6 +18,7 @@ import com.example.simplemovielistapp.models.FavouriteModel;
 import com.example.simplemovielistapp.models.TvResponse;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
     private List<TvResponse> dataTv;
@@ -38,13 +39,23 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull TvAdapter.ViewHolder holder, int position) {
         TvResponse tvResponse = dataTv.get(position);
-        holder.title_tv.setText(tvResponse.getName());
-        holder.release_date_tv.setText(tvResponse.getFirstAirDate().substring(0, 4));
+
+        if (tvResponse.getName().equals("") || tvResponse.getName() == null)
+            holder.title_tv.setText("-");
+        else
+            holder.title_tv.setText(tvResponse.getName());
+
+        if (Objects.equals(tvResponse.getFirstAirDate(), "") || tvResponse.getFirstAirDate() == null)
+            holder.release_date_tv.setText("-");
+        else
+            holder.release_date_tv.setText(tvResponse.getFirstAirDate().substring(0, 4));
+
         Glide.with(holder.itemView.getContext())
                 .load(imgBaseUrl + tvResponse.getPosterPath())
                 .centerCrop()
                 .placeholder(R.drawable.no_img)
                 .into(holder.movie_poster_iv);
+
         holder.item_grid_cv.setOnClickListener(v -> {
             FavouriteModel favouriteModel = new FavouriteModel(
                     tvResponse.getId(),

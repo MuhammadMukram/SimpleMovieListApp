@@ -1,5 +1,7 @@
 package com.example.simplemovielistapp.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.simplemovielistapp.MainActivity;
 import com.example.simplemovielistapp.R;
 import com.example.simplemovielistapp.adapter.TvAdapter;
 import com.example.simplemovielistapp.api.ApiConfig;
@@ -50,6 +53,11 @@ public class TvFragment extends Fragment {
         tv_progressbar = view.findViewById(R.id.tv_progressbar);
         error_message_tv = view.findViewById(R.id.error_message_tv);
         tvList_rv = view.findViewById(R.id.tvList_rv);
+
+        if (MainActivity.actionBar != null) {
+            Log.d(TAG, "masuk require Action bar");
+            MainActivity.actionBar.setTitle("Tv Show List");
+        }
 
         tvList_rv.setHasFixedSize(true);
         tvList_rv.setLayoutManager(new GridLayoutManager(getContext(), 2));

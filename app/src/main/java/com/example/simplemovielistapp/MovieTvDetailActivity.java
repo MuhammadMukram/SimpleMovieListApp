@@ -71,7 +71,7 @@ public class MovieTvDetailActivity extends AppCompatActivity {
     private void deleteDataToFavouriteTable(int id) {
         long result = favouriteHelper.deleteData(String.valueOf(id));
 
-        String message = result > 0 ? "Berhasil menghapus data" : "Gagal menghapus data";
+        String message = result > 0 ? "Berhasil mengeluarkan " + favouriteModel.getTitle() + " dari favourite list" : "Gagal mengeluarkan " + favouriteModel.getTitle() + " dari favourite list";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -88,7 +88,7 @@ public class MovieTvDetailActivity extends AppCompatActivity {
 
         long result = favouriteHelper.insertData(values);
 
-        String message = result > 0 ? "Berhasil menambahkan data" : "Gagal menambahkan data";
+        String message = result > 0 ? "Berhasil menambahkan " + favouriteModel.getTitle() + " dari favourite list" : "Gagal menambahkan " + favouriteModel.getTitle() + " dari favourite list";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -96,22 +96,43 @@ public class MovieTvDetailActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(imgBaseUrl + favouriteModel.getBackdrop_path())
                 .centerCrop()
+                .placeholder(R.drawable.no_img)
                 .into(backdrop_image_iv);
         Glide.with(this)
                 .load(imgBaseUrl + favouriteModel.getPoster_path())
                 .centerCrop()
+                .placeholder(R.drawable.no_img)
                 .into(poster_image_iv);
-        title_tv.setText(favouriteModel.getTitle());
-        release_date_tv.setText(favouriteModel.getDate());
-        rating_tv.setText(String.valueOf(favouriteModel.getVote_average()));
-        overview_tv.setText(favouriteModel.getOverview());
+
+        if (favouriteModel.getTitle().equals("") || favouriteModel.getTitle() == null)
+            title_tv.setText("-");
+        else
+            title_tv.setText(favouriteModel.getTitle());
+
+        if (favouriteModel.getDate().equals("") || favouriteModel.getDate() == null)
+            release_date_tv.setText("-");
+        else
+            release_date_tv.setText(favouriteModel.getDate());
+
+        if (favouriteModel.getVote_average().equals("0") || favouriteModel.getVote_average() == null)
+            rating_tv.setText("-");
+        else
+            rating_tv.setText(String.valueOf(favouriteModel.getVote_average()));
+
+        if (favouriteModel.getOverview().equals("") || favouriteModel.getOverview() == null)
+            overview_tv.setText("-");
+        else
+            overview_tv.setText(favouriteModel.getOverview());
+
         if (favouriteModel.getType() == TYPE_MOVIE) {
             type_icon_iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.movie_icon, null));
             type_tv.setText(R.string.movie);
+
         } else {
             type_icon_iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.tv_icon, null));
             type_tv.setText(R.string.tv);
         }
+
     }
 
     private void setView() {

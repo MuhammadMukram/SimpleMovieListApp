@@ -40,18 +40,29 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     @Override
     public void onBindViewHolder(@NonNull FavouriteAdapter.ViewHolder holder, int position) {
         FavouriteModel favouriteModel = favouriteModels.get(position);
-        holder.title_tv.setText(favouriteModel.getTitle());
-        holder.release_year_tv.setText(favouriteModel.getDate().substring(0, 4));
+
+        if (favouriteModel.getTitle().equals("") && favouriteModel.getTitle() == null)
+            holder.title_tv.setText("-");
+        else
+            holder.title_tv.setText(favouriteModel.getTitle());
+
+        if (favouriteModel.getDate().equals("") && favouriteModel.getDate() == null)
+            holder.release_year_tv.setText("-");
+        else
+            holder.release_year_tv.setText(favouriteModel.getDate().substring(0, 4));
+
         Glide.with(holder.itemView.getContext())
                 .load(imgBaseUrl + favouriteModel.getPoster_path())
                 .centerCrop()
                 .placeholder(R.drawable.no_img)
                 .into(holder.imageView);
+
         if (favouriteModel.getType() == MovieTvDetailActivity.TYPE_MOVIE) {
             holder.icon_type_iv.setImageDrawable(holder.itemView.getContext().getDrawable(R.drawable.movie_icon));
         } else {
             holder.icon_type_iv.setImageDrawable(holder.itemView.getContext().getDrawable(R.drawable.tv_icon));
         }
+
         holder.item_cv.setOnClickListener(v -> {
             Intent i = new Intent(holder.itemView.getContext(), MovieTvDetailActivity.class);
             i.putExtra(MovieTvDetailActivity.EXTRA_ITEM, favouriteModel);

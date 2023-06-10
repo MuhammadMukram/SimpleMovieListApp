@@ -1,5 +1,7 @@
 package com.example.simplemovielistapp.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,12 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.simplemovielistapp.MainActivity;
 import com.example.simplemovielistapp.R;
 import com.example.simplemovielistapp.adapter.FavouriteAdapter;
 import com.example.simplemovielistapp.models.FavouriteModel;
@@ -28,13 +32,12 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView favouriteList_rv;
     private TextView error_message_tv;
     private ProgressBar fav_progressbar;
+    FavouriteAdapter favouriteAdapter;
     private ArrayList<FavouriteModel> favouriteModels = new ArrayList<>();
     private ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getData() != null) {
-                    loadAllFavourite();
-                }
+                loadAllFavourite();
             }
     );
 
@@ -50,6 +53,11 @@ public class FavouriteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setView(view);
 
+        if (MainActivity.actionBar != null) {
+            Log.d(TAG, "masuk require Action bar");
+            MainActivity.actionBar.setTitle("Favourite List");
+        }
+
         favouriteList_rv.setHasFixedSize(true);
         favouriteList_rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
@@ -60,11 +68,13 @@ public class FavouriteFragment extends Fragment {
         new LoadAsyncData(this.getContext(), favouriteModels -> {
             if (favouriteModels.size() > 0) {
                 this.favouriteModels.addAll(favouriteModels);
-                FavouriteAdapter favouriteAdapter = new FavouriteAdapter(favouriteModels, resultLauncher);
+                favouriteAdapter = new FavouriteAdapter(favouriteModels, resultLauncher);
                 favouriteList_rv.setAdapter(favouriteAdapter);
                 error_message_tv.setVisibility(View.GONE);
                 fav_progressbar.setVisibility(View.GONE);
             } else {
+                favouriteAdapter = new FavouriteAdapter(favouriteModels, resultLauncher);
+                favouriteList_rv.setAdapter(favouriteAdapter);
                 error_message_tv.setVisibility(View.VISIBLE);
                 fav_progressbar.setVisibility(View.GONE);
             }
