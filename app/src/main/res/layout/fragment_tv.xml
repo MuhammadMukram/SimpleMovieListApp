@@ -3,12 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.TvFragment">
+
+    <RelativeLayout
+        android:id="@+id/searchBar_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="5dp"
+        android:visibility="gone"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="search movie">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchBar_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/search_icon"
+                android:drawablePadding="15dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/clearIcon_iv"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="end"
+            android:contentDescription="Clear"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:tint="@color/white"
+            android:src="@drawable/cancel_icon" />
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tvList_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/searchBar_rl"
         tools:listitem="@layout/grid_layout_item"/>
     <TextView
         android:id="@+id/error_message_tv"
@@ -19,6 +58,18 @@
         android:visibility="gone"
         android:textAlignment="center"
         android:text="There's something trouble \n try to reload your page"/>
+    <ImageView
+        android:id="@+id/refresh_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/refresh_icon"
+        android:layout_centerInParent="true"
+        app:tint="@color/white"
+        android:visibility="gone"
+        android:layout_above="@id/error_message_tv"
+        android:layout_marginBottom="10dp"
+        />
+
     <ProgressBar
         android:id="@+id/tv_progressbar"
         android:layout_width="wrap_content"

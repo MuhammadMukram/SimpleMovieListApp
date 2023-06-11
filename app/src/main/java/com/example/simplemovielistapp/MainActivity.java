@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         actionBar = getSupportActionBar();
-        System.out.println("status bar color = " + getWindow().getStatusBarColor());
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_3.getColor(this));
 
         FragmentManager fragmentManager = getSupportFragmentManager();

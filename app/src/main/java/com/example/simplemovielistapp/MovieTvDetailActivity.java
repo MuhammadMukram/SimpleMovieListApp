@@ -38,6 +38,9 @@ public class MovieTvDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_tv_detail);
         setView();
 
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Detail");
+
         favouriteHelper = FavouriteHelper.getInstance(getApplicationContext());
         favouriteHelper.open();
 
